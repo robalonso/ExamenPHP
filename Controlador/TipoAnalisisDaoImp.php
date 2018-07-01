@@ -1,5 +1,6 @@
 <?php
 
+include_once './ClasePdo.php';
 
 class TipoAnalisisDaoImp {
     public static function ListarTodos(){
