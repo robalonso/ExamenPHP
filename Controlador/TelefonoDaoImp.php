@@ -22,7 +22,7 @@ class TelefonoDaoImp {
             return true;
         } catch (Exception $ex) {
             $pdo->rollBack();
-            echo "No se pudo agrear " . $ex->getMessage();
+            echo "No se pudo agregar " . $ex->getMessage();
         }
         return false;
     }
