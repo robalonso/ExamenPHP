@@ -34,5 +34,4 @@ class ParticularDaoImp {
             echo "Error al agregar " . $ex->getMessage();
         }
     }
-
 }
