@@ -8,8 +8,7 @@
     <body>
         <h3>Registro de Clientes</h3>
 
-        <form action="s_RegistroClientesPersona.php">
-
+        <form action="s_RegistroClientesPersona.php" method="POST">
             <table border="0">
 
                 <tbody>
@@ -28,6 +27,10 @@
                     <tr>
                         <td>Email</td>
                         <td><input type="text" name="txtEmail" value="" /></td>
+                    </tr>
+                    <tr>
+                        <td>Direccion</td>
+                        <td><input type="text" name="txtDireccion" value="" /></td>
                     </tr>
                     <tr>
                         <td>Telefono</td>
