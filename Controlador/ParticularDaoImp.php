@@ -1,7 +1,9 @@
 <?php
 
 include_once '../Controlador/ClasePdo.php';
+
 class ParticularDaoImp {
+    
    public static function Agregar($dto){
        try{
            $pdo = new clasePDO();
@@ -31,4 +33,21 @@ class ParticularDaoImp {
            echo "Error al agregar " . $ex->getMessage();
        }
    }
+   
+   public static function ObtenerUltimo(){
+       try{
+           
+           $pdo = new clasePDO();
+           $stmt = $pdo->prepare("SELECT MAX(codigoParticular) as max FROM particular");
+           
+           $row = mysqli_fetch_array($stmt);
+           $max = $row['max'];
+           return $max;
+           
+       } catch (Exception $ex) {
+           echo "Error ".$ex->getMessage();
+       }
+       return 0;
+   }
+   
 }
