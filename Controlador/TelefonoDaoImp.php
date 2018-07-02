@@ -1,13 +1,13 @@
 <?php
 include_once '../Modelo/TelefonoDto.php';
-include_once './ClasePdo.php';
+include_once '../Controlador/ClasePdo.php';
 
 class TelefonoDaoImp {
    
     public static function Agregar($dto){
         try{
             $pdo = new clasePDO();
-            $stmt = $pdo->prepare("INSERT INTO telefono (numero, codigoParticular) VALUES (?,?)");
+            $stmt = $pdo->prepare("INSERT INTO telefono (numeroTelefono, particular_codigoParticular) VALUES (?,?)");
             $stmt->bindParam(1, $numero);
             $stmt->bindParam(2, $codigoParticular);
             
@@ -21,7 +21,7 @@ class TelefonoDaoImp {
             }
             $pdo = null;
         } catch (Exception $ex) {
-
+            echo "No se pudo agrear ".$ex->getMessage();
         }
     }
 }

@@ -8,6 +8,7 @@ class ParticularDto {
     private $nombreParticular;
     private $direccionParticular;
     private $emailParticular;
+    private $activo;
     
     function __construct() {
         $this->codigoParticular = 0;
@@ -16,6 +17,7 @@ class ParticularDto {
         $this->nombreParticular = "";
         $this->direccionParticular = "";
         $this->emailParticular = "";
+        $this->activo = 1;
     }
     
     function getCodigoParticular() {
@@ -65,6 +67,16 @@ class ParticularDto {
     function setEmailParticular($emailParticular) {
         $this->emailParticular = $emailParticular;
     }
+    
+    function getActivo() {
+        return $this->activo;
+    }
+
+    function setActivo($activo) {
+        $this->activo = $activo;
+    }
+
+
 
 
 

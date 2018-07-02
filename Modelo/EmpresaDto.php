@@ -6,12 +6,14 @@ class EmpresaDto {
     private $nombreEmpresa;
     private $passwordEmpresa;
     private $direccionEmpresa;
+    private $activo;
     
     function __construct() {
         $this->rutEmpresa = "";
         $this->nombreEmpresa = "";
         $this->passwordEmpresa = "";
         $this->direccionEmpresa = "";
+        $this->activo = 1;
     }
 
     
@@ -46,6 +48,15 @@ class EmpresaDto {
     function setDireccionEmpresa($direccionEmpresa) {
         $this->direccionEmpresa = $direccionEmpresa;
     }
+
+    function getActivo() {
+        return $this->activo;
+    }
+
+    function setActivo($activo) {
+        $this->activo = $activo;
+    }
+
 
 
 }
