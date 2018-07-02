@@ -16,6 +16,7 @@ $dto->setParticular_codigoParticular(1);
 $dto->setProcesado(0);
 $dto->setRutEmpleadoRecibe("65468318");
 
+//confirmación
 if(AnalisisMuestraDaoImp::AgregarMuestra($dto)){
     echo "<script>alert('Muestra agregada al sistema')</script>";
 }else{

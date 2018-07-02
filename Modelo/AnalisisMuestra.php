@@ -20,7 +20,7 @@ class AnalisisMuestra {
         $this->procesado = 0;
         $this->rutEmpleadoRecibe = "";
     }
-    
+    //asd
     function getEmpresa_codigoEmpresa() {
         return $this->empresa_codigoEmpresa;
     }

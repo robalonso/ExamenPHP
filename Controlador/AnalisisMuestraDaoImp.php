@@ -34,7 +34,7 @@ class AnalisisMuestraDaoImp {
                 return true;
             }
         } catch (Exception $ex) {
-            echo "Error ".$ex->getMessage();
+            echo "Error  al agreagar".$ex->getMessage();
         }
     }
 }
