@@ -1,18 +1,20 @@
 <?php
 
 class ContactoDto {
+
     private $rutContacto;
     private $nombreContacto;
     private $emailContacto;
+    private $telefonoContacto;
     private $codigoEmpresa;
-    
+
     function __construct() {
         $this->rutContacto = "";
         $this->nombreContacto = "";
         $this->emailContacto = "";
         $this->codigoEmpresa = 0;
     }
-    
+
     function getRutContacto() {
         return $this->rutContacto;
     }
@@ -23,6 +25,14 @@ class ContactoDto {
 
     function getEmailContacto() {
         return $this->emailContacto;
+    }
+
+    function getCodigoEmpresa() {
+        return $this->codigoEmpresa;
+    }
+
+    function getTelefonoContacto() {
+        return $this->telefonoContacto;
     }
 
     function setRutContacto($rutContacto) {
@@ -36,13 +46,13 @@ class ContactoDto {
     function setEmailContacto($emailContacto) {
         $this->emailContacto = $emailContacto;
     }
-    
-    function getCodigoEmpresa() {
-        return $this->codigoEmpresa;
+
+    function setCodigoEmpresa($codigoEmpresa) {
+        $this->codigoEmpresa = $codigoEmpresa;
     }
 
-
-
-
+    function setTelefonoContacto($telefonoContacto) {
+        $this->telefonoContacto = $telefonoContacto;
+    }
 
 }

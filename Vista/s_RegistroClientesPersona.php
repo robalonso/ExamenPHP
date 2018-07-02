@@ -19,7 +19,7 @@ $dto->setActivo(1);
 //agregar particular y retornar codigo de registro agregado
 $daoPart = new ParticularDaoImp();
 $codigo = $daoPart->Agregar($dto);
-echo $codigo;
+//echo $codigo;
 
 if ($codigo != 0) {
     //poblar datos de telefono
