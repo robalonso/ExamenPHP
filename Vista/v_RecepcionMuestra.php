@@ -58,21 +58,21 @@
                         </td>
                     </tr>
                     <tr>
-                <td class="form-group">
-                    <label for="dropTipoMuestra">Tipo de análisis a realizar</label>
-                    <select name="dropTipoMuestra" id="dropTipoMuestra">
-                        <option value="" disabled="" selected="true">Seleccionar...</option>
-                        <?php
-                        include_once '../Controlador/TipoAnalisisDaoImp.php';
-                        $daoTipo = new TipoAnalisisDaoImp();
-                        $tipos = $daoTipo->ListarTodos();
-                        foreach ($tipos as $valueTipos) {
-                            echo "<option> $valueTipos </option>";
-                        }
-                        ?>
-                    </select>
-                </td> 
-                </tr>
+                        <td class="form-group">
+                            <label for="dropTipoMuestra">Tipo de análisis a realizar</label>
+                            <select name="dropTipoMuestra" id="dropTipoMuestra">
+                                <option value="" disabled="" selected="true">Seleccionar...</option>
+                                <?php
+                                include_once '../Controlador/TipoAnalisisDaoImp.php';
+                                $daoTipo = new TipoAnalisisDaoImp();
+                                $tipos = $daoTipo->ListarTodos();
+                                foreach ($tipos as $valueTipos) {
+                                    echo "<option> $valueTipos </option>";
+                                }
+                                ?>
+                            </select>
+                        </td> 
+                    </tr>
                 </tbody>
             </table>
 
