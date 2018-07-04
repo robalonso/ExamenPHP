@@ -28,11 +28,9 @@
                     $procesado = 0;
                     $listaMuestra = AnalisisMuestraDaoImp::MostrarPorProcesar($procesado);
 
-
                     foreach ($listaMuestra as $muestra) {
                         ?>
                         <tr>
-
                             <?php
                             $texto = "";
                             if ($muestra->getEmpresa_codigoEmpresa() == null) {
@@ -60,10 +58,8 @@
                         </tr>
                     <?php }
                     ?>
-
                 </tbody>
             </table>
-
         </div>
     </body>
 </html>
