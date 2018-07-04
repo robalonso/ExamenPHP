@@ -7,12 +7,12 @@ class TipoAnalisisDaoImp {
         $analisis = new ArrayObject();
         try{
             $pdo = new clasePDO();
-            $stmt = $pdo->prepare("SELECT DISTINCT descripcion FROM tipoanalisis");
+            $stmt = $pdo->prepare("SELECT DISTINCT nombre FROM tipoanalisis");
             $stmt->execute();
             
             $rs = $stmt->fetchAll();
             foreach ($rs as $value) {
-                $analisis->append($value["descripcion"]);
+                $analisis->append(utf8_encode($value["nombre"]));
             }
             return $analisis;
         } catch (Exception $ex) {

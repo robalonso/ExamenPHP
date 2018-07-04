@@ -118,4 +118,30 @@ class ParticularDaoImp {
         return null;
     }
 
+    public static function buscarPorCodigo($codigo) {
+        try {
+            $pdo = new clasePDO();
+            $stmt = $pdo->prepare("SELECT * FROM particular WHERE codigoParticular = ?");
+            $stmt->bindParam(1, $codigo);
+            $stmt->execute();
+
+            $resultado = $stmt->fetchAll();
+
+            foreach ($resultado as $value) {
+                $dto = new ParticularDto();
+                $dto->setCodigoParticular($value["codigoParticular"]);
+                $dto->setRutParticular($value["rutParticular"]);
+                $dto->setNombreParticular($value["nombreParticular"]);
+                $dto->setDireccionParticular($value["direccionParticular"]);
+                $dto->setEmailParticular($value["emailParticular"]);
+                //no seteamos contraseña
+                return $dto;
+            }
+            $pdo = null;
+        } catch (Exception $ex) {
+            throw new Exception("Error al retornar un usuario Empresa: " . $ex->getTraceAsString());
+        }
+        return null;
+    }
+
 }

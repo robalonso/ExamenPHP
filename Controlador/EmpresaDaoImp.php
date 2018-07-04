@@ -127,4 +127,29 @@ class EmpresaDaoImp {
         return null;
     }
 
+    public static function buscarPorCodigo($codigo) {
+        try {
+            $pdo = new clasePDO();
+            $stmt = $pdo->prepare("SELECT * FROM empresa WHERE codigoEmpresa = ?");
+            $stmt->bindParam(1, $codigo);
+            $stmt->execute();
+
+            $resultado = $stmt->fetchAll();
+
+            foreach ($resultado as $value) {
+                $dto = new EmpresaDto();
+                $dto->setCodigoEmpresa($value["codigoEmpresa"]);
+                $dto->setRutEmpresa($value["rutEmpresa"]);
+                $dto->setNombreEmpresa($value["nombreEmpresa"]);
+                $dto->setDireccionEmpresa($value["direccionEmpresa"]);
+                $dto->setActivo($value["activo"]);
+                //no seteamos contraseña
+                return $dto;
+            }
+            $pdo = null;
+        } catch (Exception $ex) {
+            throw new Exception("Error al retornar un usuario Empresa: " . $ex->getTraceAsString());
+        }
+        return null;
+    }
 }
