@@ -96,5 +96,75 @@ class EmpleadoDaoImp {
         }
         return null;
     }
+    
+        public static function RutToName($rut) {
+        try {
+            $pdo = new clasePDO();
+            $stmt = $pdo->prepare("SELECT nombreEmpleado FROM empleado WHERE rutEmpleado=?");
+            $stmt->bindParam(1, $rut);
+            $stmt->execute();
+
+            $rs = $stmt->fetchAll();
+            foreach ($rs as $empleado) {
+                return $empleado['nombreEmpleado'];
+            }
+        } catch (Exception $ex) {
+            echo "Error al convertir " . $ex->getMessage();
+        }
+    }
+    
+    public static function Actualizar($dto){
+        try{
+            $pdo = new clasePDO();
+            $stmt = $pdo->prepare("UPDATE empleado "
+                    . "SET nombreEmpleado = ?, "
+                    . "passwordEmpleado = ?, "
+                    . "idCategoria = ?, "
+                    . "activo = ? WHERE rut = ?");
+            
+            $stmt->bindParam(1, $nombre);
+            $stmt->bindParam(2, $pass);
+            $stmt->bindParam(3, $categoria);
+            $stmt->bindParam(4, $activo);
+            $stmt->bindParam(5, $rut);
+            
+            $nombre = $dto->getNombreEmpleado();
+            $pass = $dto->getPasswordEmpleado();
+            $categoria = $dto->getIdCategoria();
+            $activo = $dto->getActivo();
+            $rut = $dto->getRutEmpleado();
+            
+            $stmt->execute();
+            
+            if($stmt->rowCount()>0){
+                return true;
+            }
+            $pdo=null;
+            
+        } catch (Exception $ex) {
+            echo "Error al actualizar: " . $ex->getMessage();
+        }
+        return false;
+    }
+    
+    public static function ListarTodos(){
+        $listaEmpleados = new ArrayObject();
+        try{
+            $pdo = new clasePDO();
+            $stmt = $pdo->prepare("SELECT * FROM empleado");
+            $stmt->execute();
+            
+            $rs = $stmt->fetchAll();
+            foreach ($rs as $empleado) {
+                $dto = new EmpleadoDto();
+                $dto->setRutEmpleado($empleado['rutEmpleado']);
+                $dto->setNombreEmpleado($empleado['nombreEmpleado']);
+                $listaEmpleados->append($dto);
+            }
+            return $listaEmpleados;
+        } catch (Exception $ex) {
+            echo "Error al listar: " . $ex->getMessage();
+        }
+    }
 
 }
