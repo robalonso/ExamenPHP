@@ -105,8 +105,8 @@ class ParticularDaoImp {
                 $dto->setCodigoParticular($value["codigoParticular"]);
                 $dto->setRutParticular($value["rutParticular"]);
                 $dto->setNombreParticular($value["nombreParticular"]);
-                $dto->setDireccionParticular($value["ap_materno"]);
-                $dto->setEmailParticular($value["ap_paterno"]);
+                $dto->setDireccionParticular($value["direccionParticular"]);
+                $dto->setEmailParticular($value["emailParticular"]);
                 $dto->setActivo($value["activo"]);
                 //no seteamos contraseña
                 return $dto;

@@ -96,8 +96,8 @@ class EmpleadoDaoImp {
         }
         return null;
     }
-    
-        public static function RutToName($rut) {
+
+    public static function RutToName($rut) {
         try {
             $pdo = new clasePDO();
             $stmt = $pdo->prepare("SELECT nombreEmpleado FROM empleado WHERE rutEmpleado=?");
@@ -112,48 +112,47 @@ class EmpleadoDaoImp {
             echo "Error al convertir " . $ex->getMessage();
         }
     }
-    
-    public static function Actualizar($dto){
-        try{
+
+    public static function Actualizar($dto) {
+        try {
             $pdo = new clasePDO();
             $stmt = $pdo->prepare("UPDATE empleado "
                     . "SET nombreEmpleado = ?, "
                     . "passwordEmpleado = ?, "
                     . "idCategoria = ?, "
-                    . "activo = ? WHERE rut = ?");
-            
+                    . "activo = ? WHERE rutEmpleado = ?");
+
             $stmt->bindParam(1, $nombre);
             $stmt->bindParam(2, $pass);
             $stmt->bindParam(3, $categoria);
             $stmt->bindParam(4, $activo);
             $stmt->bindParam(5, $rut);
-            
+
             $nombre = $dto->getNombreEmpleado();
             $pass = $dto->getPasswordEmpleado();
             $categoria = $dto->getIdCategoria();
             $activo = $dto->getActivo();
             $rut = $dto->getRutEmpleado();
-            
+
             $stmt->execute();
-            
-            if($stmt->rowCount()>0){
+
+            if ($stmt->rowCount() > 0) {
                 return true;
             }
-            $pdo=null;
-            
+            $pdo = null;
         } catch (Exception $ex) {
             echo "Error al actualizar: " . $ex->getMessage();
         }
         return false;
     }
-    
-    public static function ListarTodos(){
+
+    public static function ListarTodos() {
         $listaEmpleados = new ArrayObject();
-        try{
+        try {
             $pdo = new clasePDO();
             $stmt = $pdo->prepare("SELECT * FROM empleado");
             $stmt->execute();
-            
+
             $rs = $stmt->fetchAll();
             foreach ($rs as $empleado) {
                 $dto = new EmpleadoDto();
@@ -164,6 +163,29 @@ class EmpleadoDaoImp {
             return $listaEmpleados;
         } catch (Exception $ex) {
             echo "Error al listar: " . $ex->getMessage();
+        }
+    }
+
+    public static function ActualizarDatos($rut) {
+        try {
+            $pdo = new clasePDO();
+            $stmt = $pdo->prepare("UPDATE empleado SET nombreEmpleado = ? WHERE rutEmpleado =?");
+
+            $stmt->bindParam(1, $nombre);
+            $stmt->bindParam(2, $rut);
+            $stmt->execute();
+
+            $rs = $stmt->fetchAll();
+            foreach ($rs as $empleado) {
+                if ($empleado['rutEmpleado'] == $rut) {
+                    $dto = new EmpleadoDto();
+                    $dto->setNombreEmpleado($nombre);
+                }
+                return true;
+            }
+            return false;
+        } catch (Exception $ex) {
+            echo "No se pudo actualizar. StackTrace: " . $ex->getMessage();
         }
     }
 
