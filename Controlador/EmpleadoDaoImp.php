@@ -166,26 +166,45 @@ class EmpleadoDaoImp {
         }
     }
 
-    public static function ActualizarDatos($rut) {
+    public static function ActualizarDatos($dto) {
         try {
             $pdo = new clasePDO();
             $stmt = $pdo->prepare("UPDATE empleado SET nombreEmpleado = ? WHERE rutEmpleado =?");
 
             $stmt->bindParam(1, $nombre);
             $stmt->bindParam(2, $rut);
+
+            $nombre = $dto->getNombreEmpleado();
+            $rut = $dto->getRutEmpleado();
             $stmt->execute();
 
-            $rs = $stmt->fetchAll();
-            foreach ($rs as $empleado) {
-                if ($empleado['rutEmpleado'] == $rut) {
-                    $dto = new EmpleadoDto();
-                    $dto->setNombreEmpleado($nombre);
-                }
+            if ($stmt->rowCount() > 0) {
                 return true;
             }
             return false;
         } catch (Exception $ex) {
             echo "No se pudo actualizar. StackTrace: " . $ex->getMessage();
+        }
+    }
+
+    public static function ActualizarPass($dto) {
+        try {
+            $pdo = new clasePDO();
+            $stmt = $pdo->prepare("UPDATE empleado SET passwordEmpleado = ? WHERE rutEmpleado=?");
+            $stmt->bindParam(1, $pass);
+            $stmt->bindParam(2, $rut);
+
+            $pass = $dto->getPasswordEmpleado();
+            $rut = $dto->getRutEmpleado();
+
+            $stmt->execute();
+            if ($stmt->rowCount() > 0) {
+                return true;
+            }
+
+            return false;
+        } catch (Exception $ex) {
+            echo "No se pudo actualizar. " . $ex->getMessage();
         }
     }
 
