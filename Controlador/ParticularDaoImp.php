@@ -144,4 +144,22 @@ class ParticularDaoImp {
         return null;
     }
 
+    public static function validarRut($key) {
+        try {
+            $pdo = new clasePDO();
+            $stmt = $pdo->prepare("SELECT * FROM particular WHERE rutParticular = ?");
+            $stmt->bindParam(1, $key);
+            $stmt->execute();
+
+            if ($stmt->rowCount() > 0) {
+                $pdo = null;
+                return true;
+            }
+        } catch (Exception $ex) {
+            throw new Exception("Error al validar un rut de particular. Trace: " . $ex->getTraceAsString());
+        }
+        $pdo = null;
+        return false;
+    }
+
 }

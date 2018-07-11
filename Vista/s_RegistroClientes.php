@@ -32,9 +32,9 @@ if ($codigoEmpresa != 0) {
     if ($daoCon->Agregar($contacto)) {
         
         include_once 'v_RegistroCliente.php';
-        echo '<script>alert("exito al agregar!")</script>';
+        echo '<script>ExitoRegistrar();</script>';
     } else {        
         include_once 'v_RegistroCliente.php';
-        echo '<script>alert("error al agregar!")</script>';
+        echo '<script>ErrorRegistrar();</script>';
     }
 }

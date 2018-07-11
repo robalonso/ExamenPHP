@@ -14,7 +14,7 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
         <link rel="stylesheet" href="css/registroCliente.css">
         <!-- JS -->
-        <script type="text/javascript" src="js/recepcionMuestra.js"></script>
+        <script type="text/javascript" src="js/registroCliente.js"></script>
         <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
@@ -38,46 +38,46 @@
                                 <hr>
                                 <div class="row justify-content-center">
                                     <div class="col-6"  style="font-family: 'Varela Round', sans-serif; font-size: 18px">Rut</div>
-                                    <div class="col-6"><input type="text" name="txtRutEmpresa" class="form-control h-75" value="" /></div>
+                                    <div class="col-6"><input type="text" id="txtRutEmpresa" name="txtRutEmpresa" class="form-control h-75 border-info" value="" onkeyup="checkRutEmpresa()" required /></div>
                                 </div>
                                 <div class="row">
                                     <div class="col-6" style="font-family: 'Varela Round', sans-serif; font-size: 18px">Nombre</div>
-                                    <div class="col-6"><input type="text" name="txtNombreEmpresa" class="form-control h-75" value="" /></div>
+                                    <div class="col-6"><input type="text" name="txtNombreEmpresa" class="form-control h-75 border-info" value="" required/></div>
                                 </div>  
                                 <div class="row">
                                     <div class="col-6" style="font-family: 'Varela Round', sans-serif; font-size: 18px">Contraseña</div>
-                                    <div class="col-6"><input type="password" name="txtPassEmpresa" class="form-control h-75" value="" /></div>
+                                    <div class="col-6"><input type="password" id="txtPassEmpresa" name="txtPassEmpresa" class="form-control h-75 border-info" value="" onkeyup="check()" required/></div>
                                 </div>  
                                 <div class="row">
                                     <div class="col-6" style="font-family: 'Varela Round', sans-serif; font-size: 18px">Confirmar Contraseña</div>
-                                    <div class="col-6"><input type="password" name="txtPassConfirm" class="form-control h-75" value="" /></div>
+                                    <div class="col-6"><input type="password" id="txtPassConfirm" name="txtPassConfirm" class="form-control h-75 border-info" value="" onkeyup="check()" required/></div>
                                 </div>  
                                 <div class="row">
                                     <div class="col-6" style="font-family: 'Varela Round', sans-serif; font-size: 18px">Dirección</div>
-                                    <div class="col-6"><input type="text" name="txtDireccionEmpresa" class="form-control h-75" value="" /></div>
+                                    <div class="col-6"><input type="text" name="txtDireccionEmpresa" class="form-control h-75 border-info" value="" required/></div>
                                 </div>
                                 <br>
                                 <div class="title h5 text-center text-muted">Contacto</div>
                                 <hr>
                                 <div class="row justify-content-center">
                                     <div class="col-6"  style="font-family: 'Varela Round', sans-serif; font-size: 18px">Rut</div>
-                                    <div class="col-6"><input type="text" name="txtRutContacto" class="form-control h-75" value="" /></div>
+                                    <div class="col-6"><input type="text" id="txtRutContacto" name="txtRutContacto" class="form-control h-75 border-info" value="" onkeypress="checkRutContacto()" required/></div>
                                 </div>
                                 <div class="row">
                                     <div class="col-6" style="font-family: 'Varela Round', sans-serif; font-size: 18px">Nombre</div>
-                                    <div class="col-6"><input type="text" name="txtNombreContacto" class="form-control h-75" value="" /></div>
+                                    <div class="col-6"><input type="text" name="txtNombreContacto" class="form-control h-75 border-info" value="" required/></div>
                                 </div>  
                                 <div class="row">
                                     <div class="col-6" style="font-family: 'Varela Round', sans-serif; font-size: 18px">Email</div>
-                                    <div class="col-6"><input type="email" name="txtEmail" class="form-control h-75" value="" /></div>
+                                    <div class="col-6"><input type="email" name="txtEmail" class="form-control h-75 border-info" value="" required/></div>
                                 </div>  
                                 <div class="row">
                                     <div class="col-6" style="font-family: 'Varela Round', sans-serif; font-size: 18px">Teléfono</div>
-                                    <div class="col-6"><input type="text" name="txtTelefono" class="form-control h-75" value="" /></div>
+                                    <div class="col-6"><input type="text" name="txtTelefono" class="form-control h-75 border-info" value="" required/></div>
                                 </div>  
                             </div>
-                            <div class="card-footer">
-                                <input type="submit" value="Registrar" name="btnRegistrar" class="btn btn-secondary" style="font-family: 'Varela Round', sans-serif; font-size: 18px"/>
+                            <div class="card-footer" align="center">
+                                <input type="submit" value="Registrar" id="btnRegistrar" name="btnRegistrar" class="btn btn-info header-grandient" style="font-family: 'Varela Round', sans-serif; font-size: 18px"/>
                             </div>
                         </div>
                     </div>
@@ -85,4 +85,13 @@
             </div>
         </form>
     </body>
+    <!-- sweet alert -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <!-- JS -->
+    <script type="text/javascript" src="js/registroCliente.js"></script>
+    <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+
 </html>
