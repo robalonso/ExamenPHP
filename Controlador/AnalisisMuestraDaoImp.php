@@ -49,7 +49,7 @@ class AnalisisMuestraDaoImp {
                 return true;
             }
         } catch (Exception $ex) {
-            echo "Error  al agreagar" . $ex->getMessage();
+            echo "Error  al agregar" . $ex->getMessage();
         }
     }
 
@@ -89,7 +89,91 @@ class AnalisisMuestraDaoImp {
             }
             return $lista;
         } catch (Exception $ex) {
-            echo "Error al listar, tonto conchetumare" . $ex->getMessage();
+            echo "Error al listar" . $ex->getMessage();
+        }
+    }
+
+    public static function GetMuestra($id) {
+        $muestra = new AnalisisMuestra();
+        try {
+            $pdo = new clasePDO();
+            $stmt = $pdo->prepare("SELECT * FROM analisismuestra WHERE idAnalisisMuestra = ?");
+            $stmt->bindParam(1, $id);
+
+            $pdo->beginTransaction();
+            $stmt->execute();
+            $rs = $stmt->fetchAll();
+
+            foreach ($rs as $value) {
+                $muestra->setIdAnalisis($value['idAnalisisMuestra']);
+                $muestra->setCantidad($value['cantidadMuestra']);
+                $muestra->setEmpresa_codigoEmpresa($value['empresa_codigoEmpresa']);
+                $muestra->setFechaRecepcion($value['fechaRecepcion']);
+                $muestra->setIdAnalisis($value['idAnalisisMuestra']);
+                $muestra->setParticular_codigoParticular($value['particular_codigoParticular']);
+                $muestra->setProcesado($value['procesado']);
+                $muestra->setTemperaturaMuestra($value['temperaturaMuestra']);
+                $muestra->setRutEmpleadoRecibe($value['rutEmpleadoRecibe']);
+                $muestra->setA_bacterias($value['a_bacterias']);
+                $muestra->setA_marea($value['a_marea']);
+                $muestra->setA_metales($value['a_metales']);
+                $muestra->setA_micotoxinas($value['a_micotoxinas']);
+                $muestra->setA_plagicidas($value['a_plagicidas']);
+            }
+            $pdo->commit();
+            $pdo = null;
+            return $muestra;
+        } catch (Exception $ex) {
+            echo "Error al buscar " . $ex->getMessage();
+        }
+        return null;
+    }
+
+    public static function CambiarEstado($id) {
+
+        try {
+            $pdo = new clasePDO();
+            $stmt = $pdo->prepare("UPDATE analisismuestra SET procesado = true WHERE idAnalisisMuestra = ?");
+
+            $stmt->bindParam(1, $id);
+
+            $pdo->beginTransaction();
+            $stmt->execute();
+            $pdo->commit();
+            $pdo = null;
+
+            return true;
+        } catch (Exception $ex) {
+            echo "Error al actualizar estado analisis " . $ex->getMessage();
+        }
+        return false;
+    }
+
+    public static function ListarTodas() {
+        $lista = new ArrayObject();
+        try {
+            $pdo = new clasePDO();
+            $stmt = $pdo->prepare("SELECT * FROM analisismuestra");
+
+            $stmt->execute();
+            $rs = $stmt->fetchAll();
+
+            foreach ($rs as $muestra) {
+                $nuevaMuestra = new AnalisisMuestra();
+                $nuevaMuestra->setIdAnalisis($muestra['idAnalisisMuestra']);
+                $nuevaMuestra->setCantidad($muestra['cantidadMuestra']);
+                $nuevaMuestra->setEmpresa_codigoEmpresa($muestra['empresa_codigoEmpresa']);
+                $nuevaMuestra->setFechaRecepcion($muestra['fechaRecepcion']);
+                $nuevaMuestra->setIdAnalisis($muestra['idAnalisisMuestra']);
+                $nuevaMuestra->setParticular_codigoParticular($muestra['particular_codigoParticular']);
+                $nuevaMuestra->setProcesado($muestra['procesado']);
+                $nuevaMuestra->setTemperaturaMuestra($muestra['temperaturaMuestra']);
+                $nuevaMuestra->setRutEmpleadoRecibe($muestra['rutEmpleadoRecibe']);
+                $lista->append($nuevaMuestra);
+            }
+            return $lista;
+        } catch (Exception $ex) {
+            echo "Error al listar" . $ex->getMessage();
         }
     }
 

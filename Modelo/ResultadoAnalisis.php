@@ -1,22 +1,23 @@
 <?php
 
-
 class ResultadoAnalisis {
+
     private $idTipoAnalisis;
     private $idAnalisisMuestra;
     private $fechaRegistro;
     private $ppm;
     private $estado;
-    
+    private $rutEmpleadoAnalista;
+
     function __construct() {
         $this->idTipoAnalisis = "";
         $this->idAnalisisMuestra = "";
         $this->fechaRegistro = "";
         $this->ppm = 0;
         $this->estado = false;
-        
+        $this->rutEmpleadoAnalista = "";
     }
-    
+
     function getIdTipoAnalisis() {
         return $this->idTipoAnalisis;
     }
@@ -35,6 +36,10 @@ class ResultadoAnalisis {
 
     function getEstado() {
         return $this->estado;
+    }
+
+    function getRutEmpleadoAnalista() {
+        return $this->rutEmpleadoAnalista;
     }
 
     function setIdTipoAnalisis($idTipoAnalisis) {
@@ -57,7 +62,7 @@ class ResultadoAnalisis {
         $this->estado = $estado;
     }
 
-
-
-    
+    function setRutEmpleadoAnalista($rutEmpleadoAnalista) {
+        $this->rutEmpleadoAnalista = $rutEmpleadoAnalista;
+    }
 }
