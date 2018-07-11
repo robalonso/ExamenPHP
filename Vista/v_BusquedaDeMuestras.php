@@ -44,10 +44,10 @@
 
                         <div class="row pl-5">
                             <div class="col-8">
-                                <input type="text" class="form-control" name="txtCodigoSearch" value="" placeholder="Código de muestra">
+                                <input type="text" class="form-control" name="txtCodigoSearch" id="txtCodigoSearch" value="" placeholder="Código de muestra">
                             </div>
                             <div class="col-4">
-                                <input type="button" class="btn btn-primary" name="btnBuscar" id="btnBuscar" onclick="buscarMuestra();" value="Buscar">
+                                <input type="button" class="btn btn-primary" name="btnBuscar" id="btnBuscar" data-toggle="modal" data-target="#modalGraphics" onclick="buscarMuestra()" value="Buscar">
                             </div>
                         </div>
                         <br>
@@ -113,7 +113,19 @@
                             <div id="charts" class="pl-3"></div>
                         </div>
                         <div class="modal-footer">
+                            <div  id="footer" class="row col-12 justify-content-center">
+                                <table id="tablaResultados">
+                                    <thead class="thead-dark">
+                                        <tr class="text-center">
+                                            <th style="min-width: 250px">Tipo de Análisis</th>
+                                            <th>Resultado en PPM</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
 
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>          
                     </div>
                 </div>
@@ -123,6 +135,12 @@
 
     </body>
     <script>
+
+        function buscarMuestra() {
+            $idBuscar = $("#txtCodigoSearch").val();
+            cargarGraficos($idBuscar);
+        }
+
         function cargarGraficos(id) {
             document.getElementById('lblIdModal').innerText = id;
             $.ajax({
@@ -134,30 +152,47 @@
                     console.log(xhr.status + " \n" + xhr.responseText, "\n" + thrownError);
                 },
                 success: function (response) {
+                    //limpiar controles del modal antes de manipular
+                    $('#footer span').remove();
+                    $('#tablaResultados tbody tr').remove();
+                    $('#charts span').remove();
+                    
+                    if (response !== null) {
+                        FusionCharts.ready(function () {
+                            var revenueChart = new FusionCharts({
+                                "type": "column2d",
+                                "renderAt": "charts",
+                                "width": "730",
+                                "height": "300",
+                                "dataFormat": "json",
+                                "dataSource": {
+                                    "chart": {
+                                        "caption": "",
+                                        "subCaption": "",
+                                        "xAxisName": "Tipo análisis",
+                                        "yAxisName": "(PPM)Particulas por Millón",
+                                        "theme": "zune",
+                                        "baseFontSize": "16"
+                                    },
+                                    "data": response
+                                }
 
-                    console.log(response);
-                    FusionCharts.ready(function () {
-                        var revenueChart = new FusionCharts({
-                            "type": "column2d",
-                            "renderAt": "charts",
-                            "width": "730",
-                            "height": "300",
-                            "dataFormat": "json",
-                            "dataSource": {
-                                "chart": {
-                                    "caption": "",
-                                    "subCaption": "",
-                                    "xAxisName": "Tipo análisis",
-                                    "yAxisName": "(PPM)Particulas por Millón",
-                                    "theme": "zune",
-                                    "baseFontSize": "16"                                    
-                                },
-                                "data": response
-                            }
-
+                            });
+                            revenueChart.render();
                         });
-                        revenueChart.render();
-                    });
+
+                        //poblar tabla con resultados
+                        var trHTML;
+
+                        //poblar tabla con datos
+                        $.each(response, function (index, value) {
+                            trHTML += '<tr class="text-center"><td>' + value.label + '</td><td>' + value.value + '</td></tr>';
+                        });
+
+                        $('#tablaResultados').append(trHTML);
+                    } else {
+                        $('#charts').append('<div class="col-12" style="left:100px;"><span class="alert alert-info text-center"><strong>Aviso!</strong>&nbsp;El código de muestra ingresado aún no se encuentra procesado.</span></div>');
+                    }
                 }
             }
             );

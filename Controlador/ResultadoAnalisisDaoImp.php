@@ -58,13 +58,18 @@ class ResultadoAnalisisDaoImp {
             foreach ($rs as $value) {
                 $nombre = $value["nombre"];
                 $ppm = $value["PPM"];
-                $datos[] = array("value" => $ppm,"label" => $nombre);
+                $datos[] = array("value" => $ppm, "label" => $nombre);
             }
             $pdo = null;
-            return $datos;
+            if ($stmt->rowCount() > 0) {
+                return $datos;
+            } else {
+                return null;
+            }
         } catch (Exception $ex) {
             echo "Error  al listar resultados " . $ex->getMessage();
         }
+        return null;
     }
 
 }

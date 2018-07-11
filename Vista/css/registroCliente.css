@@ -1,0 +1,16 @@
+img {
+    border-radius: 15%;
+    width: 65%;
+    height: 65%;
+    position: relative;
+    left: 100px;
+    top: 80px;
+    -webkit-filter: grayscale(70%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(70%);
+}
+body{
+    background-image: linear-gradient(to top, #a3bded 0%, #6991c7 100%);
+}
+.header-grandient{ 
+    background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
+}
