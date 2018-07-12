@@ -27,6 +27,7 @@ and open the template in the editor.
         <?php
         // put your code here
         ?>
+        <div class="body"></div>
 
 
     </body>

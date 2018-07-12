@@ -55,8 +55,8 @@ and open the template in the editor.
                     <div class="modal-body">
                         <h1>Iniciar Sesión</h1><br>
                         <form action="s_Login.php" method="POST">
-                            <input type="text" name="txtRut" placeholder="Rut" value="">
-                            <input type="password" name="txtPass" placeholder="Contraseña">
+                            <input type="text" name="txtRut" placeholder="Rut" value="" required="">
+                            <input type="password" name="txtPass" placeholder="Contraseña" required="">
                             <input type="submit" name="btnLogin" class="login loginmodal-submit" value="Entrar">
                         </form>
                     </div>
