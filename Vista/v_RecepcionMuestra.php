@@ -46,6 +46,33 @@
         </script>
     </head>
     <body>
+
+
+        <?php
+        session_start();
+        if ($_SESSION["tipo"] == 2) {
+            ?>
+
+            <?php if ($_SESSION["categoria"] == 2) { ?>
+                <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+                    <ul class="navbar-nav">
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="v_EditarDatosUsuario.php">Editar Datos Personales</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="v_RecepcionMuestra.php">Recepción de Muestras</a>
+                        </li>
+                        <!--                        <li class="nav-item">
+                                                    <a class="nav-link" href="v_RegistroDeMuestras.php">Registro de Muestras</a>
+                                                </li>-->
+                    </ul>
+                </nav>
+            <?php } ?>
+
+        <?php } ?>
+
+
         <h3>Agregar Muestra</h3>
         <form action="s_RecepcionMuestra.php" method="POST">
             <div class="container-fluid">

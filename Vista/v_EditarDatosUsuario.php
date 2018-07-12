@@ -22,6 +22,8 @@
 
     </head>
     <body>
+        
+        
         <?php
         include_once '../Controlador/EmpresaDaoImp.php';
         include_once '../Controlador/ParticularDaoImp.php';

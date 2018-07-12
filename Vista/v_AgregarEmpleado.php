@@ -27,6 +27,22 @@ and open the template in the editor.
     </head>
     <body>
 
+
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <ul class="navbar-nav">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="v_MostrarEmpleados.php">Listado Empleados</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="v_AgregarEmpleado.php">Agregar Empleado</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="v_ModificarEmpleado.php">Modificar Empleado</a>
+                </li>
+            </ul>
+        </nav>
+
         <form action="s_AgregarEmpleado.php" method="POST">
             <div class="container col-12">
                 <h3>

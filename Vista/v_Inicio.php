@@ -24,9 +24,74 @@ and open the template in the editor.
 
     </head>
     <body>
-        <?php
-        // put your code here
-        ?>
+        <?php if ($_SESSION["tipo"] == 1) { ?>
+
+            <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+                <ul class="navbar-nav">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="v_EditarDatosUsuario.php">Editar Datos Personales</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href=></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href=></a>
+                    </li>
+                </ul>
+            </nav>
+        <?php } ?>
+
+        <?php if ($_SESSION["tipo"] == 2) { ?>
+
+            <?php if ($_SESSION["categoria"] == 1) { ?>
+                <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+                    <ul class="navbar-nav">
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="v_EditarDatosUsuario.php">Editar Datos Personales</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="v_AgregarEmpleado.php">Agregar Empleado</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="v_MostrarEmpleados.php">Mostrar Empleados</a>
+                        </li>
+                    </ul>
+                </nav>
+            <?php } ?>
+
+            <?php if ($_SESSION["categoria"] == 2) { ?>
+                <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+                    <ul class="navbar-nav">
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="v_EditarDatosUsuario.php">Editar Datos Personales</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="v_RecepcionMuestra.php">Recepción de Muestras</a>
+                        </li>
+                    </ul>
+                </nav>
+            <?php } ?>
+
+        <?php } ?>
+
+        <?php if ($_SESSION["tipo"] == 3) { ?>
+            <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+                <ul class="navbar-nav">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="v_EditarDatosUsuario.php">Editar Datos Personales</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href=""></a>
+                    </li>
+                </ul>
+            </nav>
+
+        <?php } ?>
+
         <div class="body"></div>
 
 

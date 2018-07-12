@@ -26,62 +26,76 @@ and open the template in the editor.
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     </head>
 
-<body>
-    <h3>Modificar Datos Empleado</h3>
+    <body>
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <ul class="navbar-nav">
 
-    <?php
-    include_once '../Modelo/EmpleadoDto.php';
-    if (isset($_SESSION["salida"])) {
-        $dto = new EmpleadoDto();
-        $dto = $_SESSION["salida"];
+                <li class="nav-item">
+                    <a class="nav-link" href="v_MostrarEmpleados.php">Listado Empleados</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="v_AgregarEmpleado.php">Agregar Empleado</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="v_ModificarEmpleado.php">Modificar Empleado</a>
+                </li>
+            </ul>
+        </nav>
+        <h3>Modificar Datos Empleado</h3>
+
+        <?php
+        include_once '../Modelo/EmpleadoDto.php';
+        if (isset($_SESSION["salida"])) {
+            $dto = new EmpleadoDto();
+            $dto = $_SESSION["salida"];
+            ?>
+            <form action = "s_ModificarEmpleado.php" method = "POST">
+                <table border = "0">
+                    <tbody>
+                        <tr>
+                            <td style="width: 180px">
+                                Rut Empleado:
+                                <input type = "text" name = "txtRut" value = "<?php echo $dto->getRutEmpleado(); ?>" readonly = "readonly" />
+                            </td>
+                            <td style="width: 180px">
+                                Nombre Empleado:
+                                <input type="text" name="txtNombre" value="<?php echo $dto->getNombreEmpleado(); ?>" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 180px">
+                                Nueva Contraseña:
+                                <input type="password" name="txtPass" value="" />
+                            </td>
+                            <td style="width: 180px">
+                                Confirmar Contraseña:
+                                <input type="password" name="txtConfirmarPass" value="" />
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td style="width: 180px">
+                                Categoría:
+                                <select name="dropCategoria">
+                                    <option value="" disabled="" selected="true">Seleccionar...</option>
+                                    <?php
+                                    include_once '../Controlador/CategoriaDaoImp.php';
+                                    $opcion = CategoriaDaoImp::ListarTodas();
+                                    foreach ($opcion as $value) {
+                                        echo "<option> $value </option>";
+                                    }
+                                    ?>
+                                </select>
+                            </td>
+                            <td style="width: 180px">
+                                Activo:
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <input type="submit" value="Actualizar" name="btnActualizar" />
+            </form>
+        <?php }
         ?>
-        <form action = "s_ModificarEmpleado.php" method = "POST">
-            <table border = "0">
-                <tbody>
-                    <tr>
-                        <td style="width: 180px">
-                            Rut Empleado:
-                            <input type = "text" name = "txtRut" value = "<?php echo $dto->getRutEmpleado(); ?>" readonly = "readonly" />
-                        </td>
-                        <td style="width: 180px">
-                            Nombre Empleado:
-                            <input type="text" name="txtNombre" value="<?php echo $dto->getNombreEmpleado(); ?>" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="width: 180px">
-                            Nueva Contraseña:
-                            <input type="password" name="txtPass" value="" />
-                        </td>
-                        <td style="width: 180px">
-                            Confirmar Contraseña:
-                            <input type="password" name="txtConfirmarPass" value="" />
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td style="width: 180px">
-                            Categoría:
-                            <select name="dropCategoria">
-                                <option value="" disabled="" selected="true">Seleccionar...</option>
-                                <?php
-                                include_once '../Controlador/CategoriaDaoImp.php';
-                                $opcion = CategoriaDaoImp::ListarTodas();
-                                foreach ($opcion as $value) {
-                                    echo "<option> $value </option>";
-                                }
-                                ?>
-                            </select>
-                        </td>
-                        <td style="width: 180px">
-                            Activo:
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <input type="submit" value="Actualizar" name="btnActualizar" />
-        </form>
-    <?php }
-    ?>
-</body>
+    </body>
 </html>

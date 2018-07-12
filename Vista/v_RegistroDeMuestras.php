@@ -37,6 +37,29 @@
 
     </head>
     <body>
+
+        <?php if ($_SESSION["categoria"] == 2) { ?>
+            <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+                <ul class="navbar-nav">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="v_EditarDatosUsuario.php">Editar Datos Personales</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="v_RecepcionMuestra.php">Recepción de Muestras</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="v_RegistroDeMuestras.php">Registro de Muestras</a>
+                    </li>
+                </ul>
+            </nav>
+        <?php } ?>
+
+
+
+
+
+
         <?php
         if (isset($_GET["id"])) {
             include_once '../Controlador/AnalisisMuestraDaoImp.php';
@@ -90,7 +113,7 @@
                             </div>
                         </div>
                     <?php } ?>
-                        <!--Metales-->
+                    <!--Metales-->
                     <?php if ($muestra->getA_metales()) { ?>
                         <br>
                         <div class="row justify-content-center align-items-end">
@@ -102,7 +125,7 @@
                             </div>
                         </div>
                     <?php } ?>
-                        <!--Marea-->
+                    <!--Marea-->
                     <?php if ($muestra->getA_marea()) { ?>
                         <br>
                         <div class="row justify-content-center align-items-end">
@@ -114,7 +137,7 @@
                             </div>
                         </div>
                     <?php } ?>
-                        <!--Bacterias Nocivas-->
+                    <!--Bacterias Nocivas-->
                     <?php if ($muestra->getA_bacterias()) { ?>
                         <br>
                         <div class="row justify-content-center align-items-end">
@@ -126,7 +149,7 @@
                             </div>
                         </div>
                     <?php } ?>
-                        <!--Plaguicidas prohibidos-->
+                    <!--Plaguicidas prohibidos-->
                     <?php if ($muestra->getA_plagicidas()) { ?>
                         <br>
                         <div class="row justify-content-center align-items-end">
