@@ -212,4 +212,49 @@ class EmpleadoDaoImp {
         }
     }
 
+    public static function AgregarEmpleado($dto) {
+        try {
+            $pdo = new clasePDO();
+            $stmt = $pdo->prepare("INSERT INTO empleado (rutEmpleado, nombreEmpleado, passwordEmpleado, idCategoria, activo) VALUES (?,?,?,?,?)");
+            $stmt->bindParam(1, $rut);
+            $stmt->bindParam(2, $nombre);
+            $stmt->bindParam(3, $pass);
+            $stmt->bindParam(4, $cat);
+            $stmt->bindParam(5, $activo);
+
+            $rut = $dto->getRutEmpleado();
+            $nombre = $dto->getNombreEmpleado();
+            $pass = $dto->getPasswordEmpleado();
+            $cat = $dto->getIdCategoria();
+            $activo = $dto->getActivo();
+
+            $stmt->execute();
+
+            if ($stmt->rowCount() > 0) {
+                return true;
+            }
+            return false;
+        } catch (Exception $ex) {
+            echo "Error al agregar " . $ex->getMessage();
+        }
+    }
+
+    public static function ValidarKey($key) {
+        try {
+            $pdo = new clasePDO();
+            $stmt = $pdo->prepare("SELECT * FROM empleado WHERE rutEmpleado = ?");
+            $stmt->bindParam(1, $key);
+            $stmt->execute();
+
+            if ($stmt->rowCount() > 0) {
+                $pdo = null;
+                return true;
+            }
+        } catch (Exception $ex) {
+            throw new Exception("Error al validar un rut de empresa. Trace: " . $ex->getTraceAsString());
+        }
+        $pdo = null;
+        return false;
+    }
+
 }

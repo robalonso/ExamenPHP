@@ -25,7 +25,7 @@ and open the template in the editor.
         <!-- sweet alert -->
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     </head>
-</head>
+
 <body>
     <h3>Modificar Datos Empleado</h3>
 

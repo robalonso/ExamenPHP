@@ -13,7 +13,7 @@ class CategoriaDaoImp {
             $rs = $stmt->fetchAll();
 
             foreach ($rs as $categoria) {
-                $categorias->append($categoria['descripcion']);
+                $categorias->append(utf8_encode($categoria['descripcion']));
             }
             return $categorias;
         } catch (Exception $ex) {
