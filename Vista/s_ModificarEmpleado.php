@@ -23,7 +23,7 @@ if ($pass == $confirmar) {
 
 $dto->setIdCategoria(CategoriaDaoImp::TextToId($categoria));
 
-if (EmpleadoDaoImp::Actualizar($dto)) {
+if (EmpleadoDaoImp::ActualizarDatos($dto)) {
     echo "<script>alert('Los datos del empleado han sido actualizados')</script>";
 } else {
     echo "<script>alert('El empleado no se pudo actualizar, revise los datos ingresados')</script>";

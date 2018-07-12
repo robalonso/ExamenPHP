@@ -25,7 +25,7 @@ and open the template in the editor.
         <!-- sweet alert -->
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     </head>
-</head>
+
 <body>
     <h3>Modificar Datos Empleado</h3>
 
@@ -68,7 +68,7 @@ and open the template in the editor.
                                 include_once '../Controlador/CategoriaDaoImp.php';
                                 $opcion = CategoriaDaoImp::ListarTodas();
                                 foreach ($opcion as $value) {
-                                    echo "<option> $value <option>";
+                                    echo "<option> $value </option>";
                                 }
                                 ?>
                             </select>
