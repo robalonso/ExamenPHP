@@ -35,6 +35,8 @@ if ($daoEmpresa->Login($rut, $pass)) {//validar usuario | contraseña
 
         $_SESSION["tipo"] = 2; //tipo 2 = empleado
         $_SESSION["Empleado"] = $dtoEmpleado;
+        
+        $_SESSION["categoria"] = $dtoEmpleado->getIdCategoria();
         session_commit();
         include_once 'v_Inicio.php';
     } else {
