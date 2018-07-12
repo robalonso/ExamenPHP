@@ -170,5 +170,28 @@ class EmpresaDaoImp {
         $pdo = null;
         return false;
     }
+    
+            public static function ActualizarDatos($dto) {
+        try {
+            $pdo = new clasePDO();
+            $stmt = $pdo->prepare("UPDATE empresa SET nombreEmpresa = ?, direccionEmpresa = ? WHERE rutEmpresa =?");
+
+            $stmt->bindParam(1, $nombre);
+            $stmt->bindParam(2, $direccion);
+            $stmt->bindParam(3, $rut);
+
+            $nombre = $dto->getNombreEmpresa();
+            $direccion = $dto->getDireccionEmpresa();
+            $rut = $dto->getRutEmpresa();
+            $stmt->execute();
+
+            if ($stmt->rowCount() > 0) {
+                return true;
+            }
+            return false;
+        } catch (Exception $ex) {
+            echo "No se pudo actualizar. StackTrace: " . $ex->getMessage();
+        }
+    }
 
 }

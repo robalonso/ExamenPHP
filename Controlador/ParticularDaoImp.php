@@ -161,5 +161,30 @@ class ParticularDaoImp {
         $pdo = null;
         return false;
     }
+    
+        public static function ActualizarDatos($dto) {
+        try {
+            $pdo = new clasePDO();
+            $stmt = $pdo->prepare("UPDATE particular  SET nombreParticular = ?, direccionParticular = ?, emailParticular=? WHERE rutParticular =?");
+
+            $stmt->bindParam(1, $nombre);
+            $stmt->bindParam(2, $direccion);
+            $stmt->bindParam(3, $email);
+            $stmt->bindParam(4, $rut);
+
+            $nombre = $dto->getNombreParticular();
+            $direccion = $dto->getDireccionParticular();
+            $email = $dto->getEmailParticular();
+            $rut = $dto->getRutParticular();
+            $stmt->execute();
+
+            if ($stmt->rowCount() > 0) {
+                return true;
+            }
+            return false;
+        } catch (Exception $ex) {
+            echo "No se pudo actualizar. StackTrace: " . $ex->getMessage();
+        }
+    }
 
 }
