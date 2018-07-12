@@ -204,7 +204,7 @@
                     $('#rut').val('');
                     $('#nuevaPass').val('');
                     $('#confirmarPass').val('');
-                    
+
                 }
             }
 

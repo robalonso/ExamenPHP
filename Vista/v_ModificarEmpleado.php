@@ -68,7 +68,7 @@ and open the template in the editor.
                                 include_once '../Controlador/CategoriaDaoImp.php';
                                 $opcion = CategoriaDaoImp::ListarTodas();
                                 foreach ($opcion as $value) {
-                                    echo "<option> $value <option>";
+                                    echo "<option> $value </option>";
                                 }
                                 ?>
                             </select>

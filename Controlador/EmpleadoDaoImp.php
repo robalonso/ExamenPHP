@@ -169,13 +169,17 @@ class EmpleadoDaoImp {
     public static function ActualizarDatos($dto) {
         try {
             $pdo = new clasePDO();
-            $stmt = $pdo->prepare("UPDATE empleado SET nombreEmpleado = ? WHERE rutEmpleado =?");
+            $stmt = $pdo->prepare("UPDATE empleado SET nombreEmpleado = ?, idCategoria=? WHERE rutEmpleado =?");
 
             $stmt->bindParam(1, $nombre);
-            $stmt->bindParam(2, $rut);
+            $stmt->bindParam(2, $categoria);
+            $stmt->bindParam(3, $rut);
+
 
             $nombre = $dto->getNombreEmpleado();
+            $categoria = $dto->getIdCategoria();
             $rut = $dto->getRutEmpleado();
+
             $stmt->execute();
 
             if ($stmt->rowCount() > 0) {

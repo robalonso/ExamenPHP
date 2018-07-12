@@ -10,9 +10,7 @@ and open the template in the editor.
         <title></title>
     </head>
     <body>
-        <?php
-        // put your code here
-        ?>
+
         <form action="s_Login.php" method="POST">
             <table>
                 <tbody>
