@@ -37,9 +37,7 @@ and open the template in the editor.
                 <li class="nav-item">
                     <a class="nav-link" href="v_AgregarEmpleado.php">Agregar Empleado</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="v_ModificarEmpleado.php">Modificar Empleado</a>
-                </li>
+
             </ul>
         </nav>
 

@@ -55,7 +55,7 @@ and open the template in the editor.
                             <a class="nav-link" href="v_AgregarEmpleado.php">Agregar Empleado</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="v_MostrarEmpleados.php">Mostrar Empleados</a>
+                            <a class="nav-link" href="v_MostrarEmpleados.php">Listado de Empleados</a>
                         </li>
                     </ul>
                 </nav>
