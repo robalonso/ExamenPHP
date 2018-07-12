@@ -187,15 +187,13 @@ class EmpleadoDaoImp {
         }
     }
 
-    public static function ActualizarPass($dto) {
+    public static function ActualizarPass($pass, $rut) {
         try {
             $pdo = new clasePDO();
-            $stmt = $pdo->prepare("UPDATE empleado SET passwordEmpleado = ? WHERE rutEmpleado=?");
-            $stmt->bindParam(1, $pass);
-            $stmt->bindParam(2, $rut);
+            $stmt = $pdo->prepare("UPDATE empleado SET passwordEmpleado = ? WHERE rutEmpleado = ?");
+            $stmt->bindValue(1, $pass);
+            $stmt->bindValue(2, $rut);
 
-            $pass = $dto->getPasswordEmpleado();
-            $rut = $dto->getRutEmpleado();
 
             $stmt->execute();
             if ($stmt->rowCount() > 0) {

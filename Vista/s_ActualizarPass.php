@@ -2,31 +2,24 @@
 
 include_once '../Modelo/EmpleadoDto.php';
 include_once '../Controlador/EmpleadoDaoImp.php';
-session_start();
 
-$dtoEmpleado = $_SESSION["Empleado"];
-$pass = $_POST["nuevaPass"];
-$confirmar = $_POST["confirmarPass"];
-$rut = $_POST["rutEmpleado"];
+$pass = $_POST["nueva"];
+$confirmar = $_POST["confirmar"];
+$rut = $_POST["rut"];
 
 
 
-$dtoEmpleado->setPasswordEmpleado($pass);
 
 if ($pass == $confirmar) {
-    if (EmpleadoDaoImp::ActualizarPass($dtoEmpleado)) {
-        echo "<script>alert('La contraseña ha sido actualizada')</script>";
-
-        include_once 'v_EditarDatosUsuario.php';
+    if (EmpleadoDaoImp::ActualizarPass($pass, $rut)) {
+        echo json_encode(array("d" => '1')); //true
     } else {
-
-        echo "<script>alert('La contraseña no ha sido actualizada')</script>";
-        include_once 'v_EditarDatosUsuario.php';
+        echo json_encode(array("d" => '0')); //false
     }
 } else {
-    echo "<script> alert('Las contraseñas no coinciden') </script>";
+    echo json_encode(array("d" => '2')); //no coinciden
 }
 
 
 
-include_once 'v_EditarDatosUsuario.php';
+    

@@ -10,6 +10,7 @@ img {
 }
 body{
     background-image: url("https://www.mrperswall.com/sites/default/files/styles/gallery_large/public/wallpapers/wall/C131401-8.jpg");}
+
 .header-grandient{ 
     background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
 }
